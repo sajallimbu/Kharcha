@@ -1,4 +1,4 @@
-package com.example.kharcha;
+package com.example.kharcha.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.kharcha.AddExpenseDialog;
+import com.example.kharcha.R;
 import com.example.kharcha.fragment.DashboardFragment;
 import com.example.kharcha.fragment.DashboardViewModel;
 import com.example.kharcha.fragment.NotesFragment;

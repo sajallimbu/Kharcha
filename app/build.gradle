@@ -49,4 +49,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$nav_version"
     //ticker
     implementation 'com.robinhood.ticker:ticker:2.0.2'
+    //easy splash screen
+    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
 }
