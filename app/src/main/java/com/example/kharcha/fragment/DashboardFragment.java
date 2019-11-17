@@ -1,21 +1,18 @@
 package com.example.kharcha.fragment;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kharcha.R;
 import com.example.kharcha.room.Expense;
@@ -27,7 +24,7 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
-    private TextView total;
+    private Button reset;
 
     public static DashboardFragment newInstance() {
         return new DashboardFragment();
@@ -42,6 +39,14 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        reset = getView().findViewById(R.id.reset_btn);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dashboardViewModel.deleteAllExpense();
+            }
+        });
 
         final TickerView tickerView = getView().findViewById(R.id.tickerView);
         tickerView.setCharacterLists(TickerUtils.provideNumberList());
@@ -65,12 +70,15 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel.getTotal().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                String concatenate = "Rs." + integer;
-                tickerView.setText(concatenate);
+                if (integer == null) {
+                    tickerView.setText("Rs.0");
+                } else {
+                    String concatenate = "Rs." + integer;
+                    tickerView.setText(concatenate);
+                }
             }
         });
     }
-
 
 
 }

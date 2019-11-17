@@ -20,15 +20,17 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/title_bar_style"
             android:padding="8dp"
+            android:fontFamily="@font/normal"
             android:text="Summary"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/more_btn"
+            android:id="@+id/reset_btn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:fontFamily="@font/normal"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/title_bar_style"
@@ -45,7 +47,6 @@
             app:cardCornerRadius="5dp"
             app:cardElevation="8dp">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,19 +60,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Your expense till now"
+                    android:fontFamily="@font/normal"
                     android:textColor="@color/grey"
                     android:textSize="18sp" />
 
                 <com.robinhood.ticker.TickerView
                     android:id="@+id/tickerView"
-                    app:ticker_defaultPreferredScrollingDirection="up"
-                    app:ticker_animationDuration="500"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/normal"
                     android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="60sp" />
+                    android:textColor="@color/grey"
+                    android:textSize="50sp"
+                    app:ticker_animationDuration="500"
+                    app:ticker_defaultPreferredScrollingDirection="up" />
 
 
             </LinearLayout>
@@ -86,6 +89,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/title_bar_style"
             android:padding="8dp"
+            android:fontFamily="@font/normal"
             android:text="Recent"
             android:textColor="@color/white"
             android:textSize="18sp" />

@@ -24,15 +24,15 @@ public class DashboardViewModel extends AndroidViewModel {
         total = repository.getTotal();
     }
 
-    public void insert(Expense expense){
+    public void insert(Expense expense) {
         repository.insert(expense);
     }
 
-    public void deleteAllExpense(Expense expense){
+    public void deleteAllExpense() {
         repository.deleteAllExpense();
     }
 
-    public LiveData<Integer> getTotal(){
+    public LiveData<Integer> getTotal() {
         return total;
     }
 

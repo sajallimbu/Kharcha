@@ -1,27 +1,32 @@
 package com.example.kharcha.activities;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.widget.Toast;
-
 import com.example.kharcha.AddExpenseDialog;
+import com.example.kharcha.AddNoteDialog;
 import com.example.kharcha.R;
 import com.example.kharcha.fragment.DashboardFragment;
 import com.example.kharcha.fragment.DashboardViewModel;
 import com.example.kharcha.fragment.NotesFragment;
+import com.example.kharcha.fragment.NotesViewModel;
 import com.example.kharcha.room.Expense;
+import com.example.kharcha.room.Note;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
 
-public class MainActivity extends AppCompatActivity implements AddExpenseDialog.DashboardDialogListener {
+public class MainActivity extends AppCompatActivity implements AddExpenseDialog.DashboardDialogListener, AddNoteDialog.AddDialogListener {
 
     SpaceNavigationView navigationView;
     DashboardViewModel dashboardViewModel;
+    NotesViewModel notesViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AddExpenseDialog.
 
         navigationView = findViewById(R.id.space);
         dashboardViewModel = new DashboardViewModel(getApplication());
+        notesViewModel = new NotesViewModel(getApplication());
 
         navigationView.initWithSaveInstanceState(savedInstanceState);
         navigationView.addSpaceItem(new SpaceItem("Dashboard", R.drawable.ic_dashboard));
@@ -39,7 +45,11 @@ public class MainActivity extends AppCompatActivity implements AddExpenseDialog.
         navigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
-                openDialog();
+                if (getVisibleFragment("dashboard")) {
+                    openDialog();
+                } else if (getVisibleFragment("notes")) {
+                    openAddNote();
+                }
             }
 
             @Override
@@ -80,12 +90,16 @@ public class MainActivity extends AppCompatActivity implements AddExpenseDialog.
             return true;
         }
         return false;
-
     }
 
     public void openDialog() {
         AddExpenseDialog addExpenseDialog = new AddExpenseDialog();
         addExpenseDialog.show(getSupportFragmentManager(), "Add Expense Dialog");
+    }
+
+    private void openAddNote() {
+        AddNoteDialog addNoteDialog = new AddNoteDialog();
+        addNoteDialog.show(getSupportFragmentManager(), "Add Note Dialog");
     }
 
     @Override
@@ -94,5 +108,9 @@ public class MainActivity extends AppCompatActivity implements AddExpenseDialog.
         dashboardViewModel.insert(expense);
     }
 
-
+    @Override
+    public void applyNote(String title, String description, String priority) {
+        Note note = new Note(title, description, Integer.parseInt(priority));
+        notesViewModel.insert(note);
+    }
 }

@@ -39,9 +39,9 @@ public class AddExpenseDialog extends AppCompatDialogFragment {
                 String title = editTextTitle.getText().toString();
                 String description = editTextDescription.getText().toString();
                 String amount = editTextAmount.getText().toString();
-                if (title.trim().isEmpty() || description.trim().isEmpty() || amount.trim().isEmpty()){
+                if (title.trim().isEmpty() || description.trim().isEmpty() || amount.trim().isEmpty()) {
                     Toast.makeText(getActivity(), "Please fill all fields", Toast.LENGTH_SHORT).show();
-                } else{
+                } else {
                     dashboardDialogListener.applyTexts(title, description, amount);
                 }
             }

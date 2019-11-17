@@ -3,22 +3,20 @@ package com.example.kharcha.room;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "expense_table")
-public class Expense {
+@Entity(tableName = "note_table")
+public class Note {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String title;
-
     private String description;
+    private int priority;
 
-    private int amount;
-
-    public Expense(String title, String description, int amount) {
+    public Note(String title, String description, int priority) {
         this.title = title;
         this.description = description;
-        this.amount = amount;
+        this.priority = priority;
     }
 
     public void setId(int id) {
@@ -37,7 +35,7 @@ public class Expense {
         return description;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPriority() {
+        return priority;
     }
 }

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kharcha.R;
 import com.example.kharcha.room.Expense;
 
-public class DashboardAdapter extends ListAdapter<Expense,DashboardAdapter.DashboardHolder> {
+public class DashboardAdapter extends ListAdapter<Expense, DashboardAdapter.DashboardHolder> {
 
     public DashboardAdapter() {
         super(DIFF_CALLBACK);
@@ -38,7 +38,7 @@ public class DashboardAdapter extends ListAdapter<Expense,DashboardAdapter.Dashb
     @Override
     public DashboardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_item,parent,false);
+                .inflate(R.layout.card_item, parent, false);
         return new DashboardHolder(itemView);
     }
 
@@ -47,7 +47,9 @@ public class DashboardAdapter extends ListAdapter<Expense,DashboardAdapter.Dashb
         Expense currentExpense = getItem(position);
         holder.title.setText(currentExpense.getTitle());
         holder.description.setText(currentExpense.getDescription());
-        holder.amount.setText(String.valueOf(currentExpense.getAmount()));
+        String concatenate = "Rs." + currentExpense.getAmount();
+        holder.amount.setText(concatenate);
+
     }
 
     class DashboardHolder extends RecyclerView.ViewHolder {

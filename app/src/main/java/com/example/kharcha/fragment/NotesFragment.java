@@ -1,22 +1,30 @@
 package com.example.kharcha.fragment;
 
-import androidx.lifecycle.ViewModelProviders;
-
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.example.kharcha.AddNoteDialog;
 import com.example.kharcha.R;
+import com.example.kharcha.room.Note;
 
-public class NotesFragment extends Fragment {
+import java.util.List;
 
-    private NotesViewModel mViewModel;
+public class NotesFragment extends Fragment  {
+
+    private NotesViewModel notesViewModel;
 
     public static NotesFragment newInstance() {
         return new NotesFragment();
@@ -31,8 +39,34 @@ public class NotesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(NotesViewModel.class);
-        // TODO: Use the ViewModel
+
+        RecyclerView noteRecyclerView = getView().findViewById(R.id.note_recycler_view);
+        noteRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        noteRecyclerView.setHasFixedSize(true);
+
+        final NotesAdapter adapter = new NotesAdapter();
+        noteRecyclerView.setAdapter(adapter);
+
+        notesViewModel = ViewModelProviders.of(getActivity()).get(NotesViewModel.class);
+        notesViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notes) {
+                adapter.submitList(notes);
+            }
+        });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                notesViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition() ));
+            }
+        }).attachToRecyclerView(noteRecyclerView);
     }
 
 }

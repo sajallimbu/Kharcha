@@ -10,8 +10,7 @@
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/space" />
+        android:layout_height="match_parent" />
 
     <com.luseen.spacenavigation.SpaceNavigationView
         android:id="@+id/space"
@@ -23,6 +22,6 @@
         app:inactive_centre_button_icon_color="@color/white"
         app:centre_button_icon="@drawable/ic_add"
         app:inactive_item_color="@color/grey"
-        app:space_background_color="@color/white" />
+        app:space_background_color="@color/halkawhite" />
 
 </RelativeLayout>
