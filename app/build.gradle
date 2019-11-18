@@ -4,6 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.example.kharcha"
         minSdkVersion 15
         targetSdkVersion 29
@@ -51,4 +52,6 @@ dependencies {
     implementation 'com.robinhood.ticker:ticker:2.0.2'
     //easy splash screen
     implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
+    //mpandroidchart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }

@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,15 +19,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kharcha.R;
 import com.example.kharcha.room.Expense;
+import com.example.kharcha.room.ExpenseDao;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
-    private Button reset;
+    private ImageView reset;
+    private ImageView addExpenseImage;
+    private TextView addExpenseDescription;
 
     public static DashboardFragment newInstance() {
         return new DashboardFragment();
@@ -33,12 +40,15 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.dashboard_fragment, container, false);
+        return inflater.inflate(R.layout.dashboard_fragment_new, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        addExpenseImage = getView().findViewById(R.id.add_image);
+        addExpenseDescription = getView().findViewById(R.id.add_description);
 
         reset = getView().findViewById(R.id.reset_btn);
         reset.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +73,18 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onChanged(List<Expense> expenses) {
                 //update our recycler view
+                if (!expenses.isEmpty()) {
+                    addExpenseDescription.setVisibility(View.INVISIBLE);
+                    addExpenseImage.setVisibility(View.INVISIBLE);
+                } else {
+                    addExpenseImage.setVisibility(View.VISIBLE);
+                    addExpenseDescription.setVisibility(View.VISIBLE);
+                }
                 adapter.submitList(expenses);
+
             }
         });
+
 
         dashboardViewModel.getTotal().observe(this, new Observer<Integer>() {
             @Override
@@ -79,6 +98,4 @@ public class DashboardFragment extends Fragment {
             }
         });
     }
-
-
 }

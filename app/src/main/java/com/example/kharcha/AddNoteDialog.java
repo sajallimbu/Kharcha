@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,12 +23,18 @@ public class AddNoteDialog extends AppCompatDialogFragment {
     private EditText editTextPriority;
 
     private AddDialogListener listener;
+    private ImageView addNoteImage;
+    private TextView addNoteDescription;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        addNoteImage = getActivity().findViewById(R.id.add_note_image);
+        addNoteDescription = getActivity().findViewById(R.id.add_note_description);
+
         View view = inflater.inflate(R.layout.layout_add_note, null);
         builder.setView(view)
                 .setTitle("Add Note")
@@ -45,6 +53,8 @@ public class AddNoteDialog extends AppCompatDialogFragment {
                         if (title.trim().isEmpty() || description.trim().isEmpty() || priority.trim().isEmpty()) {
                             Toast.makeText(getActivity(), "Please fill all fields", Toast.LENGTH_SHORT).show();
                         } else {
+                            addNoteImage.setVisibility(View.INVISIBLE);
+                            addNoteDescription.setVisibility(View.INVISIBLE);
                             listener.applyNote(title, description, priority);
                         }
                     }

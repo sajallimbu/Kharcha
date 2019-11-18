@@ -32,6 +32,7 @@ public class Repository {
         allNotes = noteDao.getAllNotes();
     }
 
+
     public void insert(Expense expense) {
         new InsertExpenseAsyncTask(expenseDao).execute(expense);
     }
@@ -47,6 +48,7 @@ public class Repository {
     public LiveData<Integer> getTotal() {
         return total;
     }
+
 
     private static class InsertExpenseAsyncTask extends AsyncTask<Expense, Void, Void> {
 

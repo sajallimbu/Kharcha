@@ -5,10 +5,11 @@
     <color name="colorAccent">#0F77E7</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="blue">#0F77E7</color>
+    <color name="blue">#004D93</color>
     <color name="red">#DC143C</color>
     <color name="grey">#505050</color>
     <color name="baise">#F0F0F0</color>
     <color name="halkablue">#69A9FF</color>
     <color name="halkawhite">#E9E9E9</color>
+    <color name="halkagrey">#E6E6E6</color>
 </resources>

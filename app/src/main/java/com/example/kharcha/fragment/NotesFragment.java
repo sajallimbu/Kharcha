@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,9 +24,11 @@ import com.example.kharcha.room.Note;
 
 import java.util.List;
 
-public class NotesFragment extends Fragment  {
+public class NotesFragment extends Fragment {
 
     private NotesViewModel notesViewModel;
+    private ImageView addNoteImage;
+    private TextView addNoteDescription;
 
     public static NotesFragment newInstance() {
         return new NotesFragment();
@@ -40,6 +44,9 @@ public class NotesFragment extends Fragment  {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        addNoteImage = getView().findViewById(R.id.add_note_image);
+        addNoteDescription = getView().findViewById(R.id.add_note_description);
+
         RecyclerView noteRecyclerView = getView().findViewById(R.id.note_recycler_view);
         noteRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         noteRecyclerView.setHasFixedSize(true);
@@ -51,6 +58,13 @@ public class NotesFragment extends Fragment  {
         notesViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(List<Note> notes) {
+                if (!notes.isEmpty()) {
+                    addNoteDescription.setVisibility(View.INVISIBLE);
+                    addNoteImage.setVisibility(View.INVISIBLE);
+                } else {
+                    addNoteImage.setVisibility(View.VISIBLE);
+                    addNoteDescription.setVisibility(View.VISIBLE);
+                }
                 adapter.submitList(notes);
             }
         });
@@ -64,7 +78,7 @@ public class NotesFragment extends Fragment  {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                notesViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition() ));
+                notesViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
             }
         }).attachToRecyclerView(noteRecyclerView);
     }

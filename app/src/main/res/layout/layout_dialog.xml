@@ -13,17 +13,16 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="8dp"
         android:text="Title"
-        android:fontFamily="@font/normal"
         android:textSize="14sp" />
 
     <EditText
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:layout_below="@id/dialog_title"
         android:layout_marginBottom="8dp"
         android:padding="8dp"
-        android:fontFamily="@font/normal"
         android:background="@drawable/edit_texts"
         android:ellipsize="end"
         android:textSize="18sp" />
@@ -36,7 +35,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/normal"
         android:text="Description"
         android:textSize="14sp" />
 
@@ -45,10 +43,11 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:padding="8dp"
+        android:maxLines="4"
+        android:ellipsize="end"
         android:layout_below="@id/dialog_description"
         android:layout_marginBottom="8dp"
         android:textAlignment="textStart"
-        android:fontFamily="@font/normal"
         android:background="@drawable/edit_texts"
         android:textSize="18sp"
         android:gravity="start" />
@@ -57,7 +56,6 @@
         android:id="@+id/dialog_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/normal"
         android:layout_below="@id/edit_description"
         android:layout_marginBottom="8dp"
         android:text="Amount"
@@ -67,7 +65,8 @@
         android:id="@+id/edit_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/normal"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_below="@id/dialog_amount"
         android:background="@drawable/edit_texts"
         android:inputType="number"

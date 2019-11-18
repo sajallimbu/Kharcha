@@ -1,5 +1,6 @@
 package com.example.kharcha.fragment;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,11 +46,15 @@ public class DashboardAdapter extends ListAdapter<Expense, DashboardAdapter.Dash
     @Override
     public void onBindViewHolder(@NonNull DashboardHolder holder, int position) {
         Expense currentExpense = getItem(position);
+        if (position % 2 == 1) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#E6E6E6"));
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
         holder.title.setText(currentExpense.getTitle());
         holder.description.setText(currentExpense.getDescription());
         String concatenate = "Rs." + currentExpense.getAmount();
         holder.amount.setText(concatenate);
-
     }
 
     class DashboardHolder extends RecyclerView.ViewHolder {

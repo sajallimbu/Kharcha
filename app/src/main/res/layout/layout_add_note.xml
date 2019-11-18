@@ -13,7 +13,6 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:background="@drawable/edit_texts"
-        android:fontFamily="@font/normal"
         android:hint="Title"
         android:padding="8dp"
         android:textSize="14sp" />
@@ -26,7 +25,6 @@
         android:layout_below="@id/note_title"
         android:layout_marginBottom="16dp"
         android:background="@drawable/edit_texts"
-        android:fontFamily="@font/normal"
         android:gravity="start"
         android:hint="Description"
         android:padding="8dp"
@@ -38,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/note_description"
         android:layout_marginRight="8dp"
-        android:fontFamily="@font/normal"
         android:padding="8dp"
         android:text="Priority"
         android:textSize="14sp" />
@@ -51,7 +48,6 @@
         android:layout_toRightOf="@id/priority"
         android:inputType="number"
         android:background="@drawable/edit_texts"
-        android:fontFamily="@font/normal"
         android:hint="0"
         android:padding="8dp"
         android:textAlignment="center"
