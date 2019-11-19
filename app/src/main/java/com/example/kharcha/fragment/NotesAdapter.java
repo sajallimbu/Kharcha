@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kharcha.R;
 import com.example.kharcha.room.Note;
 
-import java.util.List;
-
 public class NotesAdapter extends ListAdapter<Note, NotesAdapter.NotesHolder> {
 
     public NotesAdapter() {

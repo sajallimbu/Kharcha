@@ -32,7 +32,6 @@ public class Repository {
         allNotes = noteDao.getAllNotes();
     }
 
-
     public void insert(Expense expense) {
         new InsertExpenseAsyncTask(expenseDao).execute(expense);
     }

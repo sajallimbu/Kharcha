@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kharcha.R;
 import com.example.kharcha.room.Expense;
-import com.example.kharcha.room.ExpenseDao;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {

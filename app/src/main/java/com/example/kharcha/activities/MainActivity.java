@@ -1,18 +1,14 @@
 package com.example.kharcha.activities;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.kharcha.AddExpenseDialog;
-import com.example.kharcha.AddNoteDialog;
+import com.example.kharcha.dialog.AddExpenseDialog;
+import com.example.kharcha.dialog.AddNoteDialog;
 import com.example.kharcha.R;
 import com.example.kharcha.fragment.DashboardFragment;
 import com.example.kharcha.fragment.DashboardViewModel;
@@ -34,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements AddExpenseDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         navigationView = findViewById(R.id.space);
         dashboardViewModel = new DashboardViewModel(getApplication());

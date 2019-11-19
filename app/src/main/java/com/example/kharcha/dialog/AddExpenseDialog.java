@@ -1,4 +1,4 @@
-package com.example.kharcha;
+package com.example.kharcha.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.example.kharcha.R;
 
 public class AddExpenseDialog extends AppCompatDialogFragment {
 
