@@ -19,7 +19,9 @@ public class SplashActivity extends AppCompatActivity {
                 .withFullScreen()
                 .withTargetActivity(MainActivity.class)
                 .withSplashTimeOut(2000)
-                .withBackgroundResource(R.drawable.splash_screen);
+                .withLogo(R.mipmap.ic_launcher)
+                .withFooterText("© sl")
+                .withBackgroundResource(R.color.white);
         View easySplashScreen = config.create();
         setContentView(easySplashScreen);
     }
